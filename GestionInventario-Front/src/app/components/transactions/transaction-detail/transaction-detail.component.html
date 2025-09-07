@@ -1,0 +1,208 @@
+<div class="container-fluid">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    <p class="text-muted mt-3">Cargando transacción...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage && !isLoading " class="alert alert-danger">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+    {{ errorMessage }}
+    <button class="btn btn-sm btn-outline-danger ms-3" (click)="goBack()">
+      <i class="bi bi-arrow-left me-1"></i>Volverskjdksdjd
+    </button>
+  </div>
+
+  <!-- Transaction Detail -->
+  <div *ngIf="transaction && !isLoading" class="row justify-content-center">
+    <div class="col-lg-10">
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary">
+          <i class="bi bi-receipt me-2"></i>Detalle de Transacción
+        </h2>
+        <div>
+          <button class="btn btn-outline-secondary me-2" (click)="goBack()">
+            <i class="bi bi-arrow-left me-1"></i>Volver
+          </button>
+          <button class="btn btn-warning me-2" (click)="editTransaction()">
+            <i class="bi bi-pencil me-1"></i>Editar
+          </button>
+          <button class="btn btn-danger" (click)="deleteTransaction()">
+            <i class="bi bi-trash me-1"></i>Eliminar
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Main Transaction Card -->
+        <div class="col-md-8">
+          <div class="card shadow-sm mb-4">
+            <div class="card-header" [class]="getTransactionTypeClass()">
+              <h5 class="card-title text-white mb-0">
+                <i [class]="getTransactionTypeIcon()"></i>
+                Transacción de {{ getTransactionTypeText() }}
+              </h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="fw-semibold text-muted">ID de Transacción:</label>
+                    <p class="fs-6 badge bg-dark">#{{ transaction.id }}</p>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="fw-semibold text-muted">Fecha y Hora:</label>
+                    <p class="fs-5">
+                      <i class="bi bi-calendar-event me-2"></i>
+                      {{ formatDate(transaction.transactionDate) }}
+                    </p>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="fw-semibold text-muted">Tipo de Operación:</label>
+                    <p>
+                      <span [class]="'badge ' + getTransactionTypeClass() + ' fs-6'">
+                        <i [class]="getTransactionTypeIcon()"></i>
+                        {{ getTransactionTypeText() }}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="fw-semibold text-muted">Cantidad:</label>
+                    <p class="fs-4 fw-bold" [class]="getTransactionAmountClass()">
+                      <i [class]="getTransactionAmountIcon()"></i>
+                      {{ transaction.quantity }} unidades
+                    </p>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="fw-semibold text-muted">Impacto en Stock:</label>
+                    <p class="fs-5 fw-bold" [class]="getStockImpactClass()">
+                      {{ getStockImpact() }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row mt-3">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="fw-semibold text-muted">Precio Unitario:</label>
+                    <p class="fs-4 text-primary fw-bold">
+                      {{ transaction.unitPrice | currency }}
+                    </p>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="fw-semibold text-muted">Total de la Transacción:</label>
+                    <p class="fs-3 fw-bold" [class]="getTransactionAmountClass()">
+                      {{ transaction.totalPrice | currency }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Details -->
+              <div class="mt-4">
+                <label class="fw-semibold text-muted">Detalles:</label>
+                <div class="card bg-light">
+                  <div class="card-body">
+                    <p class="mb-0" *ngIf="transaction.detail; else noDetails">
+                      <i class="bi bi-chat-text me-2"></i>
+                      {{ transaction.detail }}
+                    </p>
+                    <ng-template #noDetails>
+                      <p class="text-muted mb-0 fst-italic">
+                        <i class="bi bi-chat me-2"></i>
+                        No hay detalles adicionales para esta transacción
+                      </p>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Info Sidebar -->
+        <div class="col-md-4">
+          <div class="card shadow-sm">
+            <div class="card-header bg-info text-white">
+              <h6 class="card-title mb-0">
+                <i class="bi bi-box-seam me-2"></i>Información del Producto
+              </h6>
+            </div>
+            <div class="card-body">
+              <div *ngIf="product; else productLoading" class="text-center">
+                <img [src]="product.imageUrl" [alt]="product.name" class="img-fluid rounded mb-3"
+                  style="max-height: 120px; object-fit: cover;">
+
+                <h5 class="text-primary">{{ product.name }}</h5>
+                <p class="text-muted small">{{ product.description | slice:0:60 }}...</p>
+
+                <div class="row text-center">
+                  <div class="col-6">
+                    <label class="text-muted small">Precio Actual</label>
+                    <p class="fw-bold text-success">{{ product.price | currency }}</p>
+                  </div>
+                  <div class="col-6">
+                    <label class="text-muted small">Stock Actual</label>
+                    <p class="fw-bold" [class.text-danger]="product.stock < 5"
+                      [class.text-success]="product.stock >= 5">
+                      {{ product.stock }}
+                    </p>
+                  </div>
+                </div>
+
+                <button class="btn btn-outline-primary btn-sm w-100 mt-2" (click)="viewTransactionDetails()">
+                  <i class="bi bi-eye me-1"></i>Ver Transaccion
+                </button>
+              </div>
+
+              <ng-template #productLoading>
+                <div class="text-center py-3">
+                  <div class="spinner-border spinner-border-sm text-info" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                  </div>
+                  <p class="text-muted small mt-2">Cargando información de la transacción...</p>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+
+          <!-- Quick Actions -->
+          <div class="card shadow-sm mt-3">
+            <div class="card-header bg-secondary text-white">
+              <h6 class="card-title mb-0">
+                <i class="bi bi-lightning me-2"></i>Acciones Rápidas
+              </h6>
+            </div>
+            <div class="card-body">
+              <button class="btn btn-outline-success btn-sm w-100 mb-2" (click)="editTransaction()">
+                <i class="bi bi-pencil me-1"></i>Editar Transacción
+              </button>
+
+              <button class="btn btn-outline-info btn-sm w-100 mb-2" (click)="viewTransactionDetails()">
+                <i class="bi bi-box-arrow-up-right me-1"></i>Ver Producto
+              </button>
+
+              <button class="btn btn-outline-warning btn-sm w-100" (click)="goBack()">
+                <i class="bi bi-list-ul me-1"></i>Volver al Listado
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

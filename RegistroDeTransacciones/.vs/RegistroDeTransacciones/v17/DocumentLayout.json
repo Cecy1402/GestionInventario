@@ -1,0 +1,238 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|c:\\users\\usuario itc\\documents\\proyectocecy\\registrodetransacciones\\registrodetransacciones\\models\\transactionmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|solutionrelative:registrodetransacciones\\models\\transactionmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|c:\\users\\usuario itc\\documents\\proyectocecy\\registrodetransacciones\\registrodetransacciones\\services\\transactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|solutionrelative:registrodetransacciones\\services\\transactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|c:\\users\\usuario itc\\documents\\proyectocecy\\registrodetransacciones\\registrodetransacciones\\services\\itransactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|solutionrelative:registrodetransacciones\\services\\itransactionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|c:\\users\\usuario itc\\documents\\proyectocecy\\registrodetransacciones\\registrodetransacciones\\controllers\\transactionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|solutionrelative:registrodetransacciones\\controllers\\transactionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|c:\\users\\usuario itc\\documents\\proyectocecy\\registrodetransacciones\\registrodetransacciones\\dto\\updatetransactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|solutionrelative:registrodetransacciones\\dto\\updatetransactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|c:\\users\\usuario itc\\documents\\proyectocecy\\registrodetransacciones\\registrodetransacciones\\dto\\createtransactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|solutionrelative:registrodetransacciones\\dto\\createtransactiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|c:\\users\\usuario itc\\documents\\proyectocecy\\registrodetransacciones\\registrodetransacciones\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|solutionrelative:registrodetransacciones\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|c:\\users\\usuario itc\\documents\\proyectocecy\\registrodetransacciones\\registrodetransacciones\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|solutionrelative:registrodetransacciones\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|c:\\users\\usuario itc\\documents\\proyectocecy\\registrodetransacciones\\registrodetransacciones\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|solutionrelative:registrodetransacciones\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|c:\\users\\usuario itc\\documents\\proyectocecy\\registrodetransacciones\\registrodetransacciones\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|solutionrelative:registrodetransacciones\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|c:\\users\\usuario itc\\documents\\proyectocecy\\registrodetransacciones\\registrodetransacciones\\migrations\\20250904063409_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|solutionrelative:registrodetransacciones\\migrations\\20250904063409_initialcreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|c:\\users\\usuario itc\\documents\\proyectocecy\\registrodetransacciones\\registrodetransacciones\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|solutionrelative:registrodetransacciones\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|c:\\users\\usuario itc\\documents\\proyectocecy\\registrodetransacciones\\registrodetransacciones\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{7EA625BC-9CD0-4011-8B1F-C2ACA893583B}|RegistroDeTransacciones\\RegistroDeTransacciones.csproj|solutionrelative:registrodetransacciones\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ITransactionService.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Services\\ITransactionService.cs",
+              "RelativeDocumentMoniker": "RegistroDeTransacciones\\Services\\ITransactionService.cs",
+              "ToolTip": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Services\\ITransactionService.cs",
+              "RelativeToolTip": "RegistroDeTransacciones\\Services\\ITransactionService.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAYwAsAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T14:31:57.418Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TransactionsController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Controllers\\TransactionsController.cs",
+              "RelativeDocumentMoniker": "RegistroDeTransacciones\\Controllers\\TransactionsController.cs",
+              "ToolTip": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Controllers\\TransactionsController.cs",
+              "RelativeToolTip": "RegistroDeTransacciones\\Controllers\\TransactionsController.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAUwBUAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T04:39:30.343Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TransactionService.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Services\\TransactionService.cs",
+              "RelativeDocumentMoniker": "RegistroDeTransacciones\\Services\\TransactionService.cs",
+              "ToolTip": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Services\\TransactionService.cs",
+              "RelativeToolTip": "RegistroDeTransacciones\\Services\\TransactionService.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAqwKkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T01:51:57.74Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UpdateTransactionDto.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Dto\\UpdateTransactionDto.cs",
+              "RelativeDocumentMoniker": "RegistroDeTransacciones\\Dto\\UpdateTransactionDto.cs",
+              "ToolTip": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Dto\\UpdateTransactionDto.cs",
+              "RelativeToolTip": "RegistroDeTransacciones\\Dto\\UpdateTransactionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T15:04:41.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Program.cs",
+              "RelativeDocumentMoniker": "RegistroDeTransacciones\\Program.cs",
+              "ToolTip": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Program.cs",
+              "RelativeToolTip": "RegistroDeTransacciones\\Program.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACsAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T02:03:15.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TransactionModels.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Models\\TransactionModels.cs",
+              "RelativeDocumentMoniker": "RegistroDeTransacciones\\Models\\TransactionModels.cs",
+              "ToolTip": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Models\\TransactionModels.cs",
+              "RelativeToolTip": "RegistroDeTransacciones\\Models\\TransactionModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T01:52:07.792Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CreateTransactionDto.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Dto\\CreateTransactionDto.cs",
+              "RelativeDocumentMoniker": "RegistroDeTransacciones\\Dto\\CreateTransactionDto.cs",
+              "ToolTip": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Dto\\CreateTransactionDto.cs",
+              "RelativeToolTip": "RegistroDeTransacciones\\Dto\\CreateTransactionDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T04:39:27.419Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "RegistroDeTransacciones\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Properties\\launchSettings.json",
+              "RelativeToolTip": "RegistroDeTransacciones\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-07T06:18:39.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "WeatherForecastController.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Controllers\\WeatherForecastController.cs",
+              "RelativeDocumentMoniker": "RegistroDeTransacciones\\Controllers\\WeatherForecastController.cs",
+              "ToolTip": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Controllers\\WeatherForecastController.cs",
+              "RelativeToolTip": "RegistroDeTransacciones\\Controllers\\WeatherForecastController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-07T01:57:34.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "RegistroDeTransacciones\\appsettings.Development.json",
+              "ToolTip": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\appsettings.Development.json",
+              "RelativeToolTip": "RegistroDeTransacciones\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-05T05:00:58.138Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "20250904063409_InitialCreate.cs",
+              "DocumentMoniker": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Migrations\\20250904063409_InitialCreate.cs",
+              "RelativeDocumentMoniker": "RegistroDeTransacciones\\Migrations\\20250904063409_InitialCreate.cs",
+              "ToolTip": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Migrations\\20250904063409_InitialCreate.cs",
+              "RelativeToolTip": "RegistroDeTransacciones\\Migrations\\20250904063409_InitialCreate.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-06T04:39:36.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Dockerfile",
+              "RelativeDocumentMoniker": "RegistroDeTransacciones\\Dockerfile",
+              "ToolTip": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\Dockerfile",
+              "RelativeToolTip": "RegistroDeTransacciones\\Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-09-05T07:01:25.467Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\appsettings.json",
+              "RelativeDocumentMoniker": "RegistroDeTransacciones\\appsettings.json",
+              "ToolTip": "C:\\Users\\Usuario iTC\\Documents\\ProyectoCecy\\RegistroDeTransacciones\\RegistroDeTransacciones\\appsettings.json",
+              "RelativeToolTip": "RegistroDeTransacciones\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-05T03:02:40.084Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

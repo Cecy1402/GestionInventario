@@ -1,0 +1,159 @@
+<div class="container-fluid">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4 p-3 bg-light rounded shadow-sm">
+    <h2 class="mb-0 text-primary">
+      <i class="bi bi-grid-3x3-gap me-2"></i>Gestión de Productos
+    </h2>
+    <a routerLink="/products/new" class="btn btn-primary">
+      <i class="bi bi-plus-circle me-1"></i>Nuevo Producto
+    </a>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <div class="input-group">
+        <span class="input-group-text">
+          <i class="bi bi-search"></i>
+        </span>
+        <input type="text" class="form-control" placeholder="Buscar productos por nombre, descripción o categoría..." 
+               [(ngModel)]="searchTerm" (input)="filterProducts()">
+        <button class="btn btn-outline-secondary" type="button" (click)="searchTerm = ''; filterProducts()">
+          <i class="bi bi-x-circle"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Table -->
+  <div class="card shadow-sm">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col" class="ps-4">Imagen</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Descripción</th>
+              <th scope="col">Categoría</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Stock</th>
+              <th scope="col" class="text-center pe-4">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of filteredProducts" class="align-middle">
+              <td class="ps-4">
+                <img [src]="product.imageUrl" alt="{{ product.name }}" 
+                     class="img-thumbnail rounded" style="width: 60px; height: 60px; object-fit: cover;">
+              </td>
+              <td>
+                <strong class="text-primary">{{ product.name }}</strong>
+              </td>
+              <td class="text-muted" style="max-width: 250px;">
+                {{ product.description | slice:0:60 }}{{ product.description.length > 60 ? '...' : '' }}
+              </td>
+              <td>
+                <span class="badge bg-info text-dark">{{ product.category }}</span>
+              </td>
+              <td>
+                <span class="fw-bold text-success">{{ product.price | currency }}</span>
+              </td>
+              <td>
+                <span [class]="'badge ' + (product.stock < 5 ? 'bg-danger' : 'bg-success')">
+                  {{ product.stock }} unidades
+                </span>
+              </td>
+              <td class="text-center pe-4">
+                <div class="btn-group" role="group">
+                  <a [routerLink]="['/products/detail', product.id]" class="btn btn-outline-info btn-sm">
+                    <i class="bi bi-eye"></i>
+                  </a>
+                  <a [routerLink]="['/products/edit', product.id]" class="btn btn-outline-warning btn-sm">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                  <button (click)="deleteProduct(product.id)" class="btn btn-outline-danger btn-sm">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty State -->
+      <div *ngIf="filteredProducts.length === 0" class="text-center py-5">
+        <i class="bi bi-inboxes display-4 text-muted d-block mb-3"></i>
+        <h4 class="text-muted">No se encontraron productos</h4>
+        <p class="text-muted">Intenta ajustar los términos de búsqueda o agrega un nuevo producto.</p>
+        <a routerLink="/products/new" class="btn btn-primary mt-2">
+          <i class="bi bi-plus-circle me-1"></i>Crear Primer Producto
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Footer -->
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <div class="card bg-primary text-white text-center shadow">
+        <div class="card-body">
+          <h5 class="card-title">{{ products.length }}</h5>
+          <p class="card-text">Productos Totales</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card bg-success text-white text-center shadow">
+        <div class="card-body">
+          <h5 class="card-title">{{ getTotalStock() }}</h5>
+          <p class="card-text">Unidades en Stock</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card bg-info text-white text-center shadow">
+        <div class="card-body">
+          <h5 class="card-title">{{ getLowStockCount() }}</h5>
+          <p class="card-text">Productos con Stock Bajo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div *ngIf="products.length > 0" class="d-flex justify-content-between align-items-center mt-4">
+    <div>
+      <span class="text-muted">Mostrando {{ products.length }} de {{ products.length }} productos</span>
+    </div>
+    <nav>
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Anterior</a>
+        </li>
+        <li class="page-item active">
+          <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">Siguiente</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ 

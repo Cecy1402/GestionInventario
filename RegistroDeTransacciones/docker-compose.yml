@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  sqlserver_transaction:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver_transaction
+    environment:
+      SA_PASSWORD: "MiPassword123!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1434:1433"
+    networks:
+      - appnet
+    volumes:
+      - ./sql-init:/docker-entrypoint-initdb.d
+
+  registrodetransacciones:
+    build:
+      context: .
+      dockerfile: RegistroDeTransacciones/Dockerfile
+    container_name: registrodetransacciones
+    depends_on:
+      - sqlserver_transaction
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5001:8081"
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    external: true

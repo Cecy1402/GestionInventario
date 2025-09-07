@@ -1,0 +1,153 @@
+<div class="container-fluid">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    <p class="text-muted mt-3">Cargando producto...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage && !isLoading " class="alert alert-danger">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+    {{ errorMessage }}
+    <button class="btn btn-sm btn-outline-danger ms-3" (click)="goBack()">
+      <i class="bi bi-arrow-left me-1"></i>Volverskjdksdjd
+    </button>
+  </div> 
+
+
+  <!-- Product Detail -->
+  <div *ngIf="product && !isLoading" class="row justify-content-center">
+    <div class="col-lg-10">
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary">
+          <i class="bi bi-box-seam me-2"></i>Detalle del Producto
+        </h2>
+        <div>
+          <button class="btn btn-outline-secondary me-2" (click)="goBack()">
+            <i class="bi bi-arrow-left me-1"></i>Volver
+          </button>
+          <button class="btn btn-warning me-2" (click)="editProduct()">
+            <i class="bi bi-pencil me-1"></i>Editar
+          </button>
+          <button class="btn btn-danger" (click)="deleteProduct()">
+            <i class="bi bi-trash me-1"></i>Eliminar
+          </button>
+        </div>
+      </div>
+
+      <!-- Product Card -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="row">
+            <!-- Image Section -->
+            <div class="col-md-4 text-center">
+              <img [src]="product.imageUrl" 
+                   [alt]="product.name" 
+                   class="img-fluid rounded shadow"
+                   style="max-height: 300px; object-fit: cover;">
+              <div class="mt-3">
+                <span [class]="'badge ' + getStockBadgeClass(product.stock) + ' fs-6'">
+                  {{ getStockStatus(product.stock) }}
+                </span>
+              </div>
+            </div>
+
+            <!-- Details Section -->
+            <div class="col-md-8">
+              <h3 class="text-primary">{{ product.name }}</h3>
+              <p class="text-muted">{{ product.description }}</p>
+
+              <div class="row mt-4">
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="fw-semibold text-muted">Categoría:</label>
+                    <p class="fs-5">
+                      <span class="badge bg-info text-dark">{{ product.category }}</span>
+                    </p>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="fw-semibold text-muted">Precio:</label>
+                    <p class="fs-4 text-success fw-bold">{{ product.price | currency }}</p>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="mb-3">
+                    <label class="fw-semibold text-muted">Stock disponible:</label>
+                    <p class="fs-2 fw-bold" [class.text-danger]="product.stock < 5" 
+                       [class.text-success]="product.stock >= 5">
+                      {{ product.stock }} unidades
+                    </p>
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="fw-semibold text-muted">ID del Producto:</label>
+                    <p class="fs-6 text-muted">#{{ product.id }}</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Stock Alert -->
+              <div *ngIf="product.stock < 5" class="alert alert-warning mt-3">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <strong>Stock bajo:</strong> Este producto tiene stock bajo. Considera realizar una compra.
+              </div>
+
+              <div *ngIf="product.stock === 0" class="alert alert-danger mt-3">
+                <i class="bi bi-x-circle-fill me-2"></i>
+                <strong>Agotado:</strong> Este producto está agotado.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <div class="card text-center bg-primary text-white">
+            <div class="card-body">
+              <i class="bi bi-cart-plus fs-1"></i>
+              <h5>Registrar Compra</h5>
+              <p>Agregar stock al producto</p>
+              <button class="btn btn-light btn-sm" (click)="registerPurchase()">
+                <i class="bi bi-plus-circle me-1"></i>Comprar
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card text-center bg-success text-white">
+            <div class="card-body">
+              <i class="bi bi-cart-check fs-1"></i>
+              <h5>Registrar Venta</h5>
+              <p>Vender unidades del producto</p>
+              <button class="btn btn-light btn-sm" (click)="registerSale()" 
+                      [disabled]="product.stock === 0">
+                <i class="bi bi-arrow-up-circle me-1"></i>Vender
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="card text-center bg-info text-white">
+            <div class="card-body">
+              <i class="bi bi-list-check fs-1"></i>
+              <h5>Ver Transacciones</h5>
+              <p>Historial de movimientos</p>
+              <button class="btn btn-light btn-sm" (click)="viewTransactions()">
+                <i class="bi bi-clock-history me-1"></i>Ver Historial
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

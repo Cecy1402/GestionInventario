@@ -1,0 +1,167 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary">
+          <i class="bi bi-plus-circle me-2" *ngIf="!isEditMode"></i>
+          <i class="bi bi-pencil me-2" *ngIf="isEditMode"></i>
+          {{ isEditMode ? 'Editar Transacción' : 'Nueva Transacción' }}
+        </h2>
+        <a routerLink="/transactions" class="btn btn-outline-secondary">
+          <i class="bi bi-arrow-left me-1"></i>Volver
+        </a>
+      </div>
+
+      <!-- Loading State -->
+      <div *ngIf="isLoading" class="text-center py-3">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        <p class="text-muted mt-2">Cargando transacción...</p>
+      </div>
+
+      <!-- Form Card -->
+      <div class="card shadow-sm" *ngIf="!isLoading">
+        <div class="card-body">
+          <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+
+            <!-- Alert Messages -->
+            <div class="alert alert-success alert-dismissible fade show" *ngIf="successMessage" role="alert">
+              <i class="bi bi-check-circle-fill me-2"></i>{{ successMessage }}
+              <button type="button" class="btn-close" (click)="successMessage = ''"></button>
+            </div>
+
+            <div class="alert alert-danger alert-dismissible fade show" *ngIf="errorMessage" role="alert">
+              <i class="bi bi-exclamation-circle-fill me-2"></i>{{ errorMessage }}
+              <button type="button" class="btn-close" (click)="errorMessage = ''"></button>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label">Tipo de Transacción *</label>
+                <div class="btn-group w-100" role="group">
+                  <button type="button" class="btn" [class.btn-success]="transactionForm.get('tipo')?.value === 0"
+                    [class.btn-outline-success]="transactionForm.get('tipo')?.value !== 0"
+                    (click)="transactionForm.get('tipo')?.setValue(0); validateQuantity()">
+                    <i class="bi bi-box-arrow-in-down me-1"></i>Compra
+                  </button>
+                  <button type="button" class="btn" [class.btn-danger]="transactionForm.get('tipo')?.value === 1"
+                    [class.btn-outline-danger]="transactionForm.get('tipo')?.value !== 1"
+                    (click)="transactionForm.get('tipo')?.setValue(1); validateQuantity()">
+                    <i class="bi bi-box-arrow-up me-1"></i>Venta
+                  </button>
+                </div>
+              </div>
+
+              <!-- Date -->
+              <div class="col-md-6 mb-3">
+                <label for="date" class="form-label">Fecha *</label>
+                <input type="datetime-local" class="form-control" id="date" formControlName="date"
+                  [class.is-invalid]="transactionForm.get('date')?.invalid && transactionForm.get('date')?.touched">
+                <div class="invalid-feedback">
+                  La fecha es requerida.
+                </div>
+              </div>
+            </div>
+
+            <!-- Product Selection -->
+            <div class="mb-3">
+              <label for="productId" class="form-label">Producto *</label>
+              <select class="form-select" id="productId" formControlName="productId" (change)="onProductChange()"
+                [class.is-invalid]="transactionForm.get('productId')?.invalid && transactionForm.get('productId')?.touched"
+                [disabled]="isEditMode">
+                <option value="">Seleccionar producto...</option>
+                <option *ngFor="let product of products" [value]="product.id">
+                  {{ product.name }} - Stock: {{ product.stock }} - Precio: {{ product.price | currency }}
+                </option>
+              </select>
+              <div class="invalid-feedback">
+                Por favor selecciona un producto.
+              </div>
+              <small class="text-muted" *ngIf="isEditMode">
+                * No se puede cambiar el producto en una transacción existente
+              </small>
+            </div>
+
+            <!-- Product Info -->
+            <div class="card bg-light mb-3" *ngIf="selectedProduct">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-md-2">
+                    <img [src]="selectedProduct.imageUrl" alt="{{ selectedProduct.name }}" class="img-fluid rounded"
+                      style="max-height: 80px; object-fit: cover;">
+                  </div>
+                  <div class="col-md-10">
+                    <h6 class="card-title">{{ selectedProduct.name }}</h6>
+                    <p class="card-text mb-1">{{ selectedProduct.description }}</p>
+                    <div class="d-flex justify-content-between">
+                      <small class="text-muted">Categoría: {{ selectedProduct.category }}</small>
+                      <small class="text-muted">Stock disponible: {{ selectedProduct.stock }}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <!-- Quantity -->
+              <div class="col-md-4 mb-3">
+                <label for="quantity" class="form-label">Cantidad *</label>
+                <input type="number" class="form-control" id="quantity" formControlName="quantity"
+                  (input)="calculateTotal(); validateQuantity()"
+                  [class.is-invalid]="(transactionForm.get('quantity')?.invalid && transactionForm.get('quantity')?.touched) || transactionForm.get('quantity')?.errors?.['insufficientStock']">
+                <div class="invalid-feedback">
+                  {{ getQuantityError() }}
+                </div>
+              </div>
+
+              <!-- Unit Price -->
+              <div class="col-md-4 mb-3">
+                <label for="unitPrice" class="form-label">Precio Unitario *</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control" id="unitPrice" formControlName="unitPrice" step="0.01"
+                    (input)="calculateTotal()"
+                    [class.is-invalid]="transactionForm.get('unitPrice')?.invalid && transactionForm.get('unitPrice')?.touched">
+                </div>
+                <div class="invalid-feedback">
+                  El precio unitario debe ser mayor a 0.
+                </div>
+              </div>
+
+              <!-- Total Price -->
+              <div class="col-md-4 mb-3">
+                <label class="form-label">Precio Total</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="text" class="form-control bg-light"
+                    [value]="transactionForm.get('totalPrice')?.value | currency" readonly>
+                </div>
+              </div>
+            </div>
+
+            <!-- Details -->
+            <div class="mb-3">
+              <label for="detail" class="form-label">Detalles</label>
+              <textarea class="form-control" id="detail" rows="3" formControlName="detail"
+                placeholder="Información adicional sobre la transacción..."></textarea>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="d-flex justify-content-between pt-3 border-top">
+              <button type="button" class="btn btn-outline-secondary" routerLink="/transactions">
+                <i class="bi bi-x-circle me-1"></i>Cancelar
+              </button>
+              <button type="submit" class="btn btn-primary" [disabled]="!canSubmit()">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2"></span>
+                <i class="bi bi-check-circle me-1" *ngIf="!isLoading"></i>
+                {{ isEditMode ? 'Actualizar Transacción' : 'Registrar Transacción' }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

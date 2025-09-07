@@ -1,0 +1,16 @@
+
+CREATE DATABASE TransactionDB;
+GO
+USE TransactionDB;
+GO
+
+ CREATE TABLE dbo.TRANSACTIONS (
+    Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    TransactionDate DATETIME2 NOT NULL,
+    Tipo INT NOT NULL,
+    ProductId INT NOT NULL,
+    Quantity INT NOT NULL,
+    UnitPrice DECIMAL(18,2) NOT NULL,
+    TotalPrice DECIMAL(18,2) NOT NULL,
+    Detail NVARCHAR(MAX) NULL
+);

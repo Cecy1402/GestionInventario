@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  sqlserver_product:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver_product
+    environment:
+      SA_PASSWORD: "TuPassword123!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - appnet
+    volumes:
+      - ./sql-init:/docker-entrypoint-initdb.d
+
+  gestiondeproducto:
+    build:
+      context: .
+      dockerfile: GestionDeProducto/Dockerfile
+    container_name: gestiondeproducto
+    depends_on:
+      - sqlserver_product
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5000:8080"
+    networks:
+      - appnet
+
+networks:
+  appnet:
+    external: true

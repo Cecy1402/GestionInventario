@@ -1,0 +1,250 @@
+<div class="container-fluid">
+  <!-- Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4 p-3 bg-light rounded shadow-sm">
+    <h2 class="mb-0 text-primary">
+      <i class="bi bi-list-check me-2"></i>Historial de Transacciones
+    </h2>
+    <div>
+      <a routerLink="/transactions/new" class="btn btn-primary me-2">
+        <i class="bi bi-plus-circle me-1"></i>Nueva Transacción
+      </a> 
+    </div>
+  </div>
+ 
+  <!-- Filtros -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-white">
+      <h6 class="card-title mb-0">
+        <i class="bi bi-funnel me-2"></i>Filtros
+      </h6>
+    </div>
+    <div class="card-body">
+      <div class="row g-3">
+        <!-- Filtro por Fechas -->
+        <div class="col-md-3">
+          <label class="form-label">Fecha Desde</label>
+          <input type="date" class="form-control" [(ngModel)]="filterDateStart" 
+                 (change)="aplyFilter()">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Fecha Hasta</label>
+          <input type="date" class="form-control" [(ngModel)]="filterDateEnd" 
+                 (change)="aplyFilter()">
+        </div>
+        
+        <!-- Filtro por Código/Descripción -->
+        <div class="col-md-4">
+          <label class="form-label">Buscar por Código o Descripción</label>
+          <input type="text" class="form-control" placeholder="Código o nombre de producto..." 
+                 [(ngModel)]="filterText" (input)="aplyFilter()">
+        </div>
+
+        <div class="col-md-2 d-flex align-items-end gap-2">
+          <button class="btn btn-primary w-100" (click)="aplyFilter()">
+            <i class="bi bi-funnel me-1"></i>Apply Filters
+          </button>
+          <button class="btn btn-outline-secondary" (click)="cleanFilter()">
+            <i class="bi bi-x-circle"></i>
+          </button>
+        </div>  
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="card bg-primary text-white text-center shadow">
+        <div class="card-body">
+          <h5 class="card-title">{{ transactions.length }}</h5>
+          <p class="card-text">Transacciones Filtradas</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-success text-white text-center shadow">
+        <div class="card-body">
+          <h5 class="card-title">{{ getPurchaseCount() }}</h5>
+          <p class="card-text">Compras Realizadas</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-danger text-white text-center shadow">
+        <div class="card-body">
+          <h5 class="card-title">{{ getSaleCount() }}</h5>
+          <p class="card-text">Ventas Realizadas</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card bg-info text-white text-center shadow">
+        <div class="card-body">
+          <h5 class="card-title">{{ getTotalAmount() | currency }}</h5>
+          <p class="card-text">Monto Total</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+    <p class="text-muted mt-3">Cargando transacciones...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errorMessage && !isLoading" class="alert alert-danger">
+    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+    {{ errorMessage }}
+    <button class="btn btn-sm btn-outline-danger ms-3" (click)="loadTransactions()">
+      <i class="bi bi-arrow-clockwise me-1"></i>Reintentar
+    </button>
+  </div>
+
+  <!-- Transactions Table -->
+  <div *ngIf="!isLoading && !errorMessage" class="card shadow-sm">
+    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+      <h5 class="card-title mb-0">Lista de Transacciones</h5>
+      <span class="badge bg-secondary">
+        {{ transactions.length }} de {{ transactions.length }} transacciones
+      </span>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col" class="ps-4">Fecha</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Producto</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio Unitario</th>
+              <th scope="col">Total</th> 
+              <th scope="col">Detalles</th>
+              <th scope="col" class="text-center pe-4">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let transaction of transactions" class="align-middle">
+              <!-- Fecha -->
+              <td class="ps-4">
+                <span class="fw-semibold">{{ transaction.transactionDate | date:'dd/MM/yyyy' }}</span>
+                <br>
+                <small class="text-muted">{{ transaction.transactionDate | date:'HH:mm' }}</small>
+              </td>
+
+              <!-- Tipo de Transacción -->
+              <td> 
+                <span [class]="'badge ' + (transaction.tipo === 0 ? 'bg-success' : 'bg-danger')">
+                  <i [class]="transaction.tipo === 0 ? 'bi-arrow-down-circle' : 'bi-arrow-up-circle'"></i>
+                  {{ transaction.tipo === 0 ? 'Compra' : 'Venta' }}
+                </span>
+              </td>
+
+              <!-- Producto -->
+              <td>
+                <div class="d-flex align-items-center"> 
+                  <div>
+                    <strong class="d-block">{{ transaction.productName }}</strong>
+                    <small class="text-muted">ID: {{ transaction.productId }}</small>
+                  </div>
+                </div>
+              </td>
+
+              <!-- Cantidad -->
+              <td>
+                <span class="fw-bold" [class.text-success]="transaction.tipo === 0" 
+                      [class.text-danger]="transaction.tipo === 1">
+                  {{ transaction.quantity }}
+                  <i [class]="transaction.tipo === 0 ? 'bi-arrow-up text-success' : 'bi-arrow-down text-danger'"></i>
+                </span>
+              </td>
+
+              <!-- Precio Unitario -->
+              <td>
+                <span class="fw-semibold">{{ transaction.unitPrice | currency }}</span>
+              </td>
+
+              <!-- Total -->
+              <td>
+                <span class="fw-bold text-primary">{{ transaction.totalPrice | currency }}</span>
+              </td>
+
+              <!-- Detalles -->
+              <td>
+                <span class="text-muted" *ngIf="transaction.detail; else noDetails">
+                  {{ transaction.detail | slice:0:30 }}{{ transaction.detail.length > 30 ? '...' : '' }}
+                </span>
+                <ng-template #noDetails>
+                  <span class="text-muted fst-italic">Sin detalles</span>
+                </ng-template>
+              </td> 
+
+              <!-- Acciones -->
+              <td class="text-center pe-4">
+                <div class="btn-group" role="group">
+                  <a [routerLink]="['/transactions/detail', transaction.id]" class="btn btn-outline-info btn-sm">
+                    <i class="bi bi-eye"></i>
+                  </a>
+                  <a [routerLink]="['/transactions/edit', transaction.id]" class="btn btn-outline-warning btn-sm">
+                    <i class="bi bi-pencil"></i>
+                  </a>
+                  <button (click)="deleteTransaction(transaction.id)" class="btn btn-outline-danger btn-sm">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Empty State -->
+      <div *ngIf="transactions.length === 0" class="text-center py-5">
+        <i class="bi bi-search display-4 text-muted d-block mb-3"></i>
+        <h4 class="text-muted">No se encontraron transacciones</h4>
+        <p class="text-muted" *ngIf="hasActiveFilters">
+          No hay resultados para los filtros aplicados.
+        </p>
+        <p class="text-muted" *ngIf="!hasActiveFilters">
+          No hay transacciones registradas.
+        </p>
+        <button class="btn btn-outline-primary mt-2 me-2" (click)="cleanFilter()" *ngIf="hasActiveFilters">
+          <i class="bi bi-x-circle me-1"></i>Limpiar Filtros
+        </button>
+        <a routerLink="/transactions/new" class="btn btn-primary mt-2">
+          <i class="bi bi-plus-circle me-1"></i>Crear Transacción
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div *ngIf="transactions.length > 0" class="d-flex justify-content-between align-items-center mt-4">
+    <div>
+      <span class="text-muted">Mostrando {{ transactions.length }} de {{ transactions.length }} transacciones</span>
+    </div>
+    <nav>
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <a class="page-link" href="#">Anterior</a>
+        </li>
+        <li class="page-item active">
+          <a class="page-link" href="#">1</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">2</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">3</a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="#">Siguiente</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
